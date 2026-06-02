@@ -35,7 +35,7 @@
             practice.
           </p>
           <div class="hero-actions" aria-label="Primary links">
-            <a class="button button-primary" href="#notes">Read Notes</a>
+            <a class="button button-primary" href="#first-note">Read First Note</a>
             <a class="button button-secondary" href="https://github.com/zero-chaoslab">View GitHub</a>
           </div>
         </div>
@@ -61,6 +61,76 @@
             <span class="focus-index">03</span>
             <h3>Thinking</h3>
             <p>Personal observations across technology, systems, learning, and everyday practice.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section featured-note" id="first-note" aria-labelledby="first-note-title">
+        <div class="note-shell">
+          <div class="note-header">
+            <div>
+              <p class="eyebrow">First entry</p>
+              <h2 id="first-note-title">A quiet place to begin.</h2>
+            </div>
+            <div class="language-switch" role="group" aria-label="Select note language">
+              <button
+                class="language-option"
+                type="button"
+                data-lang-target="zh"
+                aria-pressed="false"
+              >
+                中文
+              </button>
+              <button
+                class="language-option is-active"
+                type="button"
+                data-lang-target="en"
+                aria-pressed="true"
+              >
+                English
+              </button>
+            </div>
+          </div>
+
+          <article class="note-card">
+            <div class="note-meta" aria-label="Entry metadata">
+              <span class="note-tag">Entry 001</span>
+              <span class="note-tag">CN / EN</span>
+              <span class="note-tag">06.2026</span>
+              <p class="note-summary">
+                A quiet beginning for the kind of notes that sit between diary,
+                essay, and unfinished thought.
+              </p>
+            </div>
+
+            <div class="note-body">
+              <section class="note-copy" data-lang-panel="zh" lang="zh-Hans" hidden>
+                <h3>记录一些随笔、感想、思考</h3>
+                <p>
+                  这里想留下一些还没有被整理成答案的东西。它们可能只是一天结束后的感想，读到一句话时停下来的念头，或者工作与生活之间忽然冒出来的小问题。
+                </p>
+                <p>
+                  我希望这个地方不只记录结果，也记录过程。包括犹豫、改变主意、重新理解自己的时刻。很多真正重要的东西，往往不是在结论里发生，而是在反复思考的途中慢慢显现。
+                </p>
+              </section>
+
+              <section class="note-copy is-active" data-lang-panel="en" lang="en">
+                <h3>Notes, Impressions, and Thoughts</h3>
+                <p>
+                  Here I want to leave behind a few things that have not yet been
+                  arranged into answers. Some may be end-of-day reflections, a
+                  thought that appeared while reading a sentence, or a small
+                  question that surfaced somewhere between work and life.
+                </p>
+                <p>
+                  I want this space to record not only conclusions, but also
+                  process: hesitation, changed minds, and the moments when
+                  understanding quietly shifts. Many important things do not
+                  happen inside the final answer; they become visible along the
+                  way.
+                </p>
+              </section>
+            </div>
           </article>
         </div>
       </section>
@@ -96,5 +166,52 @@
       <span>Zero Chaos Lab</span>
       <a href="https://github.com/zero-chaoslab">github.com/zero-chaoslab</a>
     </footer>
+    <script>
+      (() => {
+        const storageKey = "zero-chaoslab-note-language-v2";
+        const buttons = Array.from(document.querySelectorAll("[data-lang-target]"));
+        const panels = Array.from(document.querySelectorAll("[data-lang-panel]"));
+
+        if (!buttons.length || !panels.length) {
+          return;
+        }
+
+        const activateLanguage = (lang) => {
+          buttons.forEach((button) => {
+            const isActive = button.dataset.langTarget === lang;
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+          });
+
+          panels.forEach((panel) => {
+            const isActive = panel.dataset.langPanel === lang;
+            panel.classList.toggle("is-active", isActive);
+            panel.hidden = !isActive;
+          });
+
+          try {
+            localStorage.setItem(storageKey, lang);
+          } catch (error) {
+            console.warn("Unable to store preferred language.", error);
+          }
+        };
+
+        let preferredLanguage = "en";
+
+        try {
+          preferredLanguage = localStorage.getItem(storageKey) || preferredLanguage;
+        } catch (error) {
+          console.warn("Unable to read preferred language.", error);
+        }
+
+        activateLanguage(preferredLanguage === "zh" ? "zh" : "en");
+
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            activateLanguage(button.dataset.langTarget);
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
