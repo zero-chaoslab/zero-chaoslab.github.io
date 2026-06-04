@@ -1,0 +1,50 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Agent, context, daily note, and abstract graph</title>
+  <desc id="desc">A clean diagram showing the agent connected to context, daily note, and abstract graph, with the memory layers connected as a bidirectional path.</desc>
+
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10Z" fill="#A8BFD9"/>
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#8DBFBA"/>
+    </marker>
+    <marker id="arrow-teal-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M10 0L0 5L10 10Z" fill="#8DBFBA"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#D7B666"/>
+    </marker>
+    <marker id="arrow-amber-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M10 0L0 5L10 10Z" fill="#D7B666"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="720" rx="28" fill="#F8FBFA"/>
+  <rect x="56" y="48" width="1088" height="624" rx="28" fill="white" stroke="#D9E7E3" stroke-width="2"/>
+
+  <text x="96" y="112" fill="#162625" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">Agent, Context, Daily Note, and Abstract Graph</text>
+
+  <rect x="110" y="286" width="260" height="126" rx="24" fill="#F7FAFF" stroke="#A8BFD9" stroke-width="3"/>
+  <text x="146" y="338" fill="#1E3751" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Agent</text>
+  <text x="146" y="374" fill="#5B7189" font-family="Inter, Arial, sans-serif" font-size="22">Current task</text>
+
+  <rect x="500" y="170" width="600" height="112" rx="24" fill="#EEF6F4" stroke="#7FB8B0" stroke-width="3"/>
+  <text x="536" y="218" fill="#106363" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Context</text>
+  <text x="536" y="254" fill="#4B6966" font-family="Inter, Arial, sans-serif" font-size="22">Local state, details, and current decisions</text>
+
+  <rect x="500" y="338" width="600" height="112" rx="24" fill="#FFFFFF" stroke="#D8E7E3" stroke-width="2"/>
+  <text x="536" y="386" fill="#18302F" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Daily Note</text>
+  <text x="536" y="422" fill="#4F6D69" font-family="Inter, Arial, sans-serif" font-size="22">Append-only revisions, wrong paths, and feedback</text>
+
+  <rect x="500" y="506" width="600" height="112" rx="24" fill="#FFF8EA" stroke="#E3B75A" stroke-width="3"/>
+  <text x="536" y="554" fill="#6A4D14" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Abstract Graph</text>
+  <text x="536" y="590" fill="#7A6024" font-family="Inter, Arial, sans-serif" font-size="22">Concepts, cues, relations, and recall paths</text>
+
+  <path d="M370 326C426 326 442 226 500 226" stroke="#A8BFD9" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+  <path d="M370 374C426 374 442 394 500 394" stroke="#A8BFD9" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow-blue)"/>
+  <path d="M300 412C330 496 410 562 500 562" stroke="#D7B666" stroke-width="4" stroke-linecap="round" stroke-dasharray="12 10" marker-end="url(#arrow-amber)"/>
+
+  <path d="M800 282V338" stroke="#8DBFBA" stroke-width="5" stroke-linecap="round" marker-start="url(#arrow-teal-start)" marker-end="url(#arrow-teal)"/>
+  <path d="M800 450V506" stroke="#D7B666" stroke-width="5" stroke-linecap="round" marker-start="url(#arrow-amber-start)" marker-end="url(#arrow-amber)"/>
+</svg>

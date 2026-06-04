@@ -1,0 +1,39 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Context tree structure</title>
+  <desc id="desc">A diagram showing a summary context at the top with references to deeper raw context branches below.</desc>
+  <rect width="1200" height="760" rx="28" fill="#F8FBFA"/>
+  <rect x="46" y="44" width="1108" height="672" rx="28" fill="white" stroke="#D6E6E2" stroke-width="2"/>
+  <text x="84" y="104" fill="#142524" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">Context Tree</text>
+  <text x="84" y="142" fill="#5C7370" font-family="Inter, Arial, sans-serif" font-size="22">Top level keeps the summary and entry points. Lower levels keep raw clues and detailed traces.</text>
+
+  <rect x="394" y="182" width="412" height="132" rx="24" fill="#EEF6F4" stroke="#7FB8B0" stroke-width="3"/>
+  <text x="426" y="234" fill="#0F6363" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Summary Context</text>
+  <text x="426" y="269" fill="#3F6662" font-family="Inter, Arial, sans-serif" font-size="22">Summary, entry points,</text>
+  <text x="426" y="299" fill="#3F6662" font-family="Inter, Arial, sans-serif" font-size="22">key decisions, references</text>
+
+  <path d="M600 314V438" stroke="#7FB8B0" stroke-width="5" stroke-linecap="round"/>
+  <path d="M270 438H930" stroke="#C6DDD8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M270 438V472" stroke="#C6DDD8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M600 438V472" stroke="#C6DDD8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M930 438V472" stroke="#C6DDD8" stroke-width="4" stroke-linecap="round"/>
+
+  <rect x="116" y="474" width="310" height="166" rx="24" fill="#FFFFFF" stroke="#D8E7E3" stroke-width="2"/>
+  <text x="146" y="526" fill="#17302E" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="700">Raw Context A</text>
+  <text x="146" y="565" fill="#4F6D69" font-family="Inter, Arial, sans-serif" font-size="22">Raw clues, failed paths,</text>
+  <text x="146" y="596" fill="#4F6D69" font-family="Inter, Arial, sans-serif" font-size="22">and reasoning history</text>
+
+  <rect x="445" y="474" width="310" height="166" rx="24" fill="#FFFFFF" stroke="#D8E7E3" stroke-width="2"/>
+  <text x="475" y="526" fill="#17302E" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="700">Raw Context B</text>
+  <text x="475" y="565" fill="#4F6D69" font-family="Inter, Arial, sans-serif" font-size="22">Commands, trial paths,</text>
+  <text x="475" y="596" fill="#4F6D69" font-family="Inter, Arial, sans-serif" font-size="22">temporary decisions</text>
+
+  <rect x="774" y="474" width="310" height="166" rx="24" fill="#FFF8EA" stroke="#F1CA77" stroke-width="2"/>
+  <text x="804" y="526" fill="#5A4310" font-family="Inter, Arial, sans-serif" font-size="27" font-weight="700">Reference Paths</text>
+  <text x="804" y="565" fill="#82662C" font-family="Inter, Arial, sans-serif" font-size="22">Trace downward only</text>
+  <text x="804" y="596" fill="#82662C" font-family="Inter, Arial, sans-serif" font-size="22">when raw details matter</text>
+
+  <circle cx="600" cy="372" r="13" fill="#0F7878"/>
+  <circle cx="270" cy="438" r="10" fill="#8ABAB3"/>
+  <circle cx="600" cy="438" r="10" fill="#8ABAB3"/>
+  <circle cx="930" cy="438" r="10" fill="#D9A33A"/>
+</svg>

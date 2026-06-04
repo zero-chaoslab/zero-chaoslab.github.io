@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Zero Chaos Lab is Zero's personal blog for essays, ideas, reflections, and working notes across technology, life, and systems thinking."
+      content="Zero Chaos Lab is Zero's personal blog for notes, ideas, reflections, and working thoughts across technology, life, and systems thinking."
     />
     <title>Zero Chaos Lab</title>
     <link rel="preload" as="image" href="assets/luminous-lab-hero.png" />
@@ -18,8 +18,7 @@
         <span>Zero Chaos Lab</span>
       </a>
       <nav class="site-nav" aria-label="Site">
-        <a href="#notes">Notes</a>
-        <a href="#principles">Principles</a>
+        <a href="#first-note">Notes</a>
         <a href="https://github.com/zero-chaoslab">GitHub</a>
       </nav>
     </header>
@@ -27,10 +26,10 @@
     <main id="top">
       <section class="hero" aria-label="Zero Chaos Lab introduction">
         <div class="hero-content">
-          <p class="eyebrow">Essays, notes, and working thoughts</p>
+          <p class="eyebrow">Notes, ideas, and working thoughts</p>
           <h1>Zero Chaos Lab</h1>
           <p class="hero-copy">
-            A quiet blog for Zero to collect essays, ideas, reflections, and
+            A quiet blog for Zero to collect notes, ideas, reflections, and
             unfinished thoughts across technology, life, systems, and creative
             practice.
           </p>
@@ -41,32 +40,8 @@
         </div>
       </section>
 
-      <section class="section intro-band" id="notes">
-        <div class="section-heading">
-          <p class="eyebrow">Selected focus</p>
-          <h2>A white space for essays, ideas, and thinking.</h2>
-        </div>
-        <div class="focus-grid">
-          <article class="focus-card">
-            <span class="focus-index">01</span>
-            <h3>Essays</h3>
-            <p>Longer reflections on what is being learned, built, questioned, and revised.</p>
-          </article>
-          <article class="focus-card">
-            <span class="focus-index">02</span>
-            <h3>Ideas</h3>
-            <p>Loose sketches, early hypotheses, design fragments, and notes worth returning to.</p>
-          </article>
-          <article class="focus-card">
-            <span class="focus-index">03</span>
-            <h3>Thinking</h3>
-            <p>Personal observations across technology, systems, learning, and everyday practice.</p>
-          </article>
-        </div>
-      </section>
-
       <section class="section featured-note" id="first-note" aria-labelledby="first-note-title">
-        <div class="note-shell">
+        <div class="note-shell bilingual-entry" data-bilingual-entry="entry-001">
           <div class="note-header">
             <div>
               <p class="eyebrow">First entry</p>
@@ -99,7 +74,7 @@
               <span class="note-tag">06.2026</span>
               <p class="note-summary">
                 A quiet beginning for the kind of notes that sit between diary,
-                essay, and unfinished thought.
+                reflection, and unfinished thought.
               </p>
             </div>
 
@@ -135,31 +110,95 @@
         </div>
       </section>
 
-      <section class="section split-section" id="principles">
-        <div class="principle-copy">
-          <p class="eyebrow">Why this space exists</p>
-          <h2>Keep the thoughts that are still becoming clear.</h2>
-          <p>
-            Zero Chaos Lab is a place to slow down, write honestly, and leave
-            traces of thinking before they turn into finished projects. Some
-            notes may become essays; some may stay as questions.
-          </p>
-        </div>
-        <div class="principle-list" aria-label="Writing principles">
-          <div>
-            <span>Observe</span>
-            <p>Capture the small details, patterns, and tensions that are easy to lose.</p>
+      <section class="section featured-note" id="simple-agent-memory" aria-labelledby="simple-agent-memory-title">
+        <div class="note-shell bilingual-entry" data-bilingual-entry="entry-002">
+          <div class="note-header">
+            <div>
+              <p class="eyebrow">
+                <span data-lang-panel="zh" lang="zh-Hans" hidden>精选笔记</span>
+                <span class="is-active" data-lang-panel="en" lang="en">Featured note</span>
+              </p>
+              <h2 id="simple-agent-memory-title">
+                <span data-lang-panel="zh" lang="zh-Hans" hidden>如何实现一个简易的AgentMemory</span>
+                <span class="is-active" data-lang-panel="en" lang="en">How to Build a Simple Agent Memory</span>
+              </h2>
+            </div>
+            <div class="language-switch" role="group" aria-label="Select note language">
+              <button
+                class="language-option"
+                type="button"
+                data-lang-target="zh"
+                aria-pressed="false"
+              >
+                中文
+              </button>
+              <button
+                class="language-option is-active"
+                type="button"
+                data-lang-target="en"
+                aria-pressed="true"
+              >
+                English
+              </button>
+            </div>
           </div>
-          <div>
-            <span>Question</span>
-            <p>Let ideas stay open long enough to be examined from more than one angle.</p>
-          </div>
-          <div>
-            <span>Refine</span>
-            <p>Return to useful thoughts, sharpen them, and connect them to lived work.</p>
-          </div>
+
+          <article class="note-card note-link-card">
+            <div class="note-meta" aria-label="Entry metadata">
+              <span class="note-tag">Entry 002</span>
+              <span class="note-tag">Memory</span>
+              <span class="note-tag">Workflow</span>
+              <p class="note-summary">
+                <span data-lang-panel="zh" lang="zh-Hans" hidden>
+                  从0开始自制一个0依赖、本地化的 Agent memory，支持跨 Agent
+                  复用、自动提炼与召回、skill 路由和 memory 可视化。
+                </span>
+                <span class="is-active" data-lang-panel="en" lang="en">
+                  Build a zero-dependency, localized Agent memory from scratch,
+                  with cross-Agent reuse, automatic refinement and recall, skill
+                  routing, and memory visualization.
+                </span>
+              </p>
+            </div>
+
+            <section class="note-link-copy" data-lang-panel="zh" lang="zh-Hans" hidden>
+              <p>
+                本文会讲述如何从0开始自制一个0依赖、本地化的 Agent
+                memory，让同一套 context / memory 可以在不同的 coding Agent
+                之间复用，并在用户与 coding Agent
+                交互的过程中实时、自动地被提炼、召回、修正。
+              </p>
+              <p>
+                它还会继续讨论如何通过 memory 路由 skill、如何把稳定的 workflow
+                自动转化为新的 skill，以及如何用 memory graph 和 recall trace
+                让整个 memory 结构变得可理解、可审计、可维护。
+              </p>
+              <div class="note-link-actions">
+                <a class="button button-primary" href="posts/simple-agent-memory.html">阅读全文</a>
+              </div>
+            </section>
+
+            <section class="note-link-copy is-active" data-lang-panel="en" lang="en">
+              <p>
+                This note explains how to build a zero-dependency, localized
+                Agent memory from scratch, so the same context / memory system
+                can be reused across coding Agents and refined, recalled, and
+                corrected automatically during user-Agent interaction.
+              </p>
+              <p>
+                It also follows how memory routes skills, how stable workflows
+                can become new skills, and how memory graph plus recall trace
+                visualization make the memory structure understandable,
+                auditable, and maintainable.
+              </p>
+              <div class="note-link-actions">
+                <a class="button button-primary" href="posts/simple-agent-memory.html">Read Note</a>
+              </div>
+            </section>
+          </article>
         </div>
       </section>
+
     </main>
 
     <footer class="site-footer">
@@ -168,47 +207,37 @@
     </footer>
     <script>
       (() => {
-        const storageKey = "zero-chaoslab-note-language-v2";
-        const buttons = Array.from(document.querySelectorAll("[data-lang-target]"));
-        const panels = Array.from(document.querySelectorAll("[data-lang-panel]"));
+        const entries = Array.from(document.querySelectorAll("[data-bilingual-entry]"));
 
-        if (!buttons.length || !panels.length) {
-          return;
-        }
+        entries.forEach((entry, index) => {
+          const entryId = entry.dataset.bilingualEntry || `entry-${index + 1}`;
+          const buttons = Array.from(entry.querySelectorAll("[data-lang-target]"));
+          const panels = Array.from(entry.querySelectorAll("[data-lang-panel]"));
 
-        const activateLanguage = (lang) => {
-          buttons.forEach((button) => {
-            const isActive = button.dataset.langTarget === lang;
-            button.classList.toggle("is-active", isActive);
-            button.setAttribute("aria-pressed", String(isActive));
-          });
-
-          panels.forEach((panel) => {
-            const isActive = panel.dataset.langPanel === lang;
-            panel.classList.toggle("is-active", isActive);
-            panel.hidden = !isActive;
-          });
-
-          try {
-            localStorage.setItem(storageKey, lang);
-          } catch (error) {
-            console.warn("Unable to store preferred language.", error);
+          if (!buttons.length || !panels.length) {
+            return;
           }
-        };
 
-        let preferredLanguage = "en";
+          const activateLanguage = (lang) => {
+            buttons.forEach((button) => {
+              const isActive = button.dataset.langTarget === lang;
+              button.classList.toggle("is-active", isActive);
+              button.setAttribute("aria-pressed", String(isActive));
+            });
 
-        try {
-          preferredLanguage = localStorage.getItem(storageKey) || preferredLanguage;
-        } catch (error) {
-          console.warn("Unable to read preferred language.", error);
-        }
+            panels.forEach((panel) => {
+              const isActive = panel.dataset.langPanel === lang;
+              panel.classList.toggle("is-active", isActive);
+              panel.hidden = !isActive;
+            });
+          };
 
-        activateLanguage(preferredLanguage === "zh" ? "zh" : "en");
+          activateLanguage("en");
 
-        buttons.forEach((button) => {
-          button.addEventListener("click", () => {
-            activateLanguage(button.dataset.langTarget);
+          buttons.forEach((button) => {
+            button.addEventListener("click", () => {
+              activateLanguage(button.dataset.langTarget);
+            });
           });
         });
       })();
