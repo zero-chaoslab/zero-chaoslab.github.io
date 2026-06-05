@@ -1,0 +1,133 @@
+<svg width="1400" height="920" viewBox="0 0 1400 920" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Agent memory loop</title>
+  <desc id="desc">A clean rectangular diagram showing an Agent connected to Context, Daily Note, Memory Graph, Observability and Feedback, and multiple Skills.</desc>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#A8BFD9"/>
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#7FB8B0"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#E1B65D"/>
+    </marker>
+    <marker id="arrow-violet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#AAA9D0"/>
+    </marker>
+    <style>
+      .title { fill: #142523; font-family: Inter, Arial, sans-serif; font-size: 40px; font-weight: 800; letter-spacing: 0; }
+      .label { fill: #182c2a; font-family: Inter, Arial, sans-serif; font-size: 32px; font-weight: 800; letter-spacing: 0; }
+      .body { fill: #516c68; font-family: Inter, Arial, sans-serif; font-size: 22px; font-weight: 500; letter-spacing: 0; }
+      .small { fill: #5d7470; font-family: Inter, Arial, sans-serif; font-size: 17px; font-weight: 650; letter-spacing: 0; }
+      .tiny { fill: #657a76; font-family: Inter, Arial, sans-serif; font-size: 14px; font-weight: 650; letter-spacing: 0; }
+      .outer { fill: #fbfcfa; stroke: #d7e8e5; stroke-width: 2; }
+      .panel { fill: #ffffff; stroke: #d7e8e5; stroke-width: 2; }
+      .agent { fill: #f7faff; stroke: #a8bfd9; stroke-width: 3; }
+      .context { fill: #eef7f5; stroke: #7fb8b0; stroke-width: 3; }
+      .daily { fill: #ffffff; stroke: #d7e8e5; stroke-width: 2.5; }
+      .graph { fill: #fff8ea; stroke: #e1b65d; stroke-width: 3; }
+      .observe { fill: #f6f5fb; stroke: #aaa9d0; stroke-width: 3; }
+      .skill { fill: #ffffff; stroke: #d7e8e5; stroke-width: 2.5; }
+      .mini { fill: #ffffff; stroke: #d7e8e5; stroke-width: 1.8; }
+      .mini-teal { fill: #f7fbfa; stroke: #9bc9c4; stroke-width: 1.8; }
+      .mini-amber { fill: #fffaf0; stroke: #e7c778; stroke-width: 1.8; }
+      .mini-violet { fill: #faf9ff; stroke: #bebddd; stroke-width: 1.8; }
+      .blue-line { stroke: #a8bfd9; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .teal-line { stroke: #7fb8b0; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .amber-line { stroke: #e1b65d; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .violet-line { stroke: #aaa9d0; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .thin-line { stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+      .dash-line { stroke-dasharray: 12 12; }
+    </style>
+  </defs>
+
+  <rect x="1" y="1" width="1398" height="918" rx="30" class="outer"/>
+  <rect x="64" y="58" width="1272" height="804" rx="24" class="panel"/>
+
+  <text x="108" y="134" class="title">Agent Memory Loop</text>
+
+  <rect x="122" y="305" width="290" height="140" rx="22" class="agent"/>
+  <text x="162" y="362" class="label" fill="#1f3d5f">Agent</text>
+  <text x="162" y="404" class="body" fill="#566d88">current task</text>
+
+  <rect x="122" y="625" width="290" height="146" rx="22" class="observe"/>
+  <text x="162" y="677" class="label" font-size="29">Observability</text>
+  <text x="162" y="714" class="label" font-size="29">&amp; Feedback</text>
+  <rect x="162" y="733" width="72" height="24" rx="5" class="mini-violet"/>
+  <rect x="244" y="733" width="66" height="24" rx="5" class="mini-violet"/>
+  <rect x="320" y="733" width="54" height="24" rx="5" class="mini-violet"/>
+  <text x="176" y="751" class="tiny">trace</text>
+  <text x="261" y="751" class="tiny">miss</text>
+  <text x="333" y="751" class="tiny">repair</text>
+
+  <rect x="548" y="175" width="684" height="164" rx="22" class="context"/>
+  <text x="590" y="231" class="label" fill="#106363">Context</text>
+  <text x="590" y="271" class="body">restart-safe task state</text>
+  <rect x="836" y="209" width="122" height="32" rx="7" class="mini-teal"/>
+  <text x="855" y="231" class="tiny">context.md</text>
+  <path d="M897 241V258M897 258H807M897 258H989M807 258V279M897 258V279M989 258V279" class="teal-line thin-line"/>
+  <rect x="748" y="279" width="118" height="30" rx="7" class="mini-teal"/>
+  <rect x="877" y="279" width="108" height="30" rx="7" class="mini-teal"/>
+  <rect x="996" y="279" width="112" height="30" rx="7" class="mini-teal"/>
+  <text x="765" y="299" class="tiny">references/</text>
+  <text x="895" y="299" class="tiny">snapshots/</text>
+  <text x="1020" y="299" class="tiny">scripts/</text>
+
+  <rect x="548" y="382" width="684" height="146" rx="22" class="daily"/>
+  <text x="590" y="438" class="label">Daily Note</text>
+  <text x="590" y="478" class="body">append-only trace</text>
+  <rect x="820" y="420" width="70" height="70" rx="8" class="mini"/>
+  <rect x="905" y="420" width="70" height="70" rx="8" class="mini"/>
+  <rect x="990" y="420" width="70" height="70" rx="8" class="mini"/>
+  <rect x="1075" y="420" width="70" height="70" rx="8" class="mini"/>
+  <rect x="1160" y="420" width="46" height="70" rx="8" class="mini"/>
+  <text x="840" y="452" class="small">01</text>
+  <text x="925" y="452" class="small">02</text>
+  <text x="1010" y="452" class="small">03</text>
+  <text x="1095" y="452" class="small">04</text>
+  <text x="1171" y="456" class="small">...</text>
+  <path d="M842 468H868M927 468H953M1012 468H1038M1097 468H1123" stroke="#9fb4b0" stroke-width="2" stroke-linecap="round"/>
+
+  <rect x="548" y="572" width="684" height="170" rx="22" class="graph"/>
+  <text x="590" y="628" class="label" fill="#6a4d14">Memory Graph</text>
+  <text x="590" y="668" class="body" fill="#755d22">concepts, cues, recall routes</text>
+  <circle cx="996" cy="641" r="17" class="mini-amber"/>
+  <circle cx="1074" cy="615" r="17" class="mini-amber"/>
+  <circle cx="1150" cy="653" r="17" class="mini-amber"/>
+  <circle cx="1025" cy="704" r="17" class="mini-amber"/>
+  <circle cx="1106" cy="704" r="17" class="mini-amber"/>
+  <path d="M1013 636L1057 621M1091 623L1133 647M1074 632L1106 687M1007 657L1025 687M1042 704H1089" class="amber-line thin-line"/>
+
+  <rect x="548" y="780" width="684" height="76" rx="22" class="skill"/>
+  <text x="590" y="828" class="label">Skill</text>
+  <rect x="732" y="802" width="102" height="30" rx="7" class="mini"/>
+  <rect x="850" y="802" width="98" height="30" rx="7" class="mini"/>
+  <rect x="964" y="802" width="92" height="30" rx="7" class="mini"/>
+  <rect x="1072" y="802" width="92" height="30" rx="7" class="mini"/>
+  <rect x="1180" y="802" width="42" height="30" rx="7" class="mini"/>
+  <text x="748" y="823" class="tiny">context</text>
+  <text x="866" y="823" class="tiny">curator</text>
+  <text x="982" y="823" class="tiny">browser</text>
+  <text x="1103" y="823" class="tiny">git</text>
+  <text x="1191" y="823" class="tiny">...</text>
+
+  <path d="M412 354C462 354 493 251 548 251" class="blue-line" marker-end="url(#arrow-blue)"/>
+  <path d="M412 411C464 411 493 455 548 455" class="blue-line" marker-end="url(#arrow-blue)"/>
+  <path d="M412 445C462 522 490 637 548 657" class="amber-line dash-line" marker-end="url(#arrow-amber)"/>
+
+  <path d="M890 339V382" class="teal-line" marker-end="url(#arrow-teal)"/>
+  <path d="M890 528V572" class="amber-line" marker-end="url(#arrow-amber)"/>
+  <path d="M890 742V780" class="amber-line" marker-end="url(#arrow-amber)"/>
+
+  <path d="M548 682C498 682 461 698 412 698" class="violet-line dash-line" marker-end="url(#arrow-violet)"/>
+  <path d="M548 818C490 818 462 742 412 731" class="violet-line" marker-end="url(#arrow-violet)"/>
+  <path d="M122 698C80 628 80 484 122 375" class="blue-line" marker-end="url(#arrow-blue)"/>
+
+  <text x="445" y="276" class="small">read / write</text>
+  <text x="448" y="430" class="small">reflect</text>
+  <text x="448" y="558" class="small">recall</text>
+  <text x="915" y="368" class="small">distill</text>
+  <text x="915" y="558" class="small">curate</text>
+  <text x="915" y="768" class="small">extract</text>
+  <text x="432" y="766" class="small">observe / repair</text>
+</svg>
