@@ -247,29 +247,51 @@
 
                 <h4>Agent 怎么实时知道该把什么写进 context</h4>
                 <p>
-                  这里最关键的一点，其实不是指望 Agent
-                  自己突然“意识到”该持久化什么，而是要把 force rule
-                  明确地加载给它。对于 Codex / Cursor 这一类 Agent
-                  来说，<code>AGENTS.md</code>
-                  本身就可以承担这个角色: 它直接定义持久化边界，比如在回复用户之前必须先更新
+                  首先，我们需要把能力拆成两个 skill:
+                  <code>context-persistence</code> 和
+                  <code>memory-curator</code>。前者负责在任务执行过程中不断维护
+                  <code>context.md</code>，把 goal、关键决策、blocker、触达文件、验证状态和下一步写成可恢复的任务状态，并在发现可复用知识时提炼到
+                  append-only 的 <code>daily note</code>；后者负责把
+                  <code>daily note</code> 结合 memory graph 做进一步整理: 创建新的
+                  memory node、修正现有 memory node、维护 memory graph
+                  的 recall 机制，并让 Agent 知道如何基于 memory graph 推理和检索
+                  memory。
+                </p>
+                <p>
+                  但是只有 skill 还不够。长程任务里，Agent
+                  仍然可能忘记该在什么时候调用这些 skill，所以最好再增加两条 force
+                  rule，并让它们自动加载到 Agent 的 session context
+                  中。它们要描述清楚持久化边界: 在回复用户之前必须先更新
                   <code>context.md</code>、只记录真正影响任务继续的关键内容、context
                   超过阈值后必须 compact、发现可复用知识时要继续提炼到
                   <code>daily note</code> 和 memory。这样一来，context
                   写入就不是“有空再记一下”，而是工作流本身的一部分。
                 </p>
                 <pre class="note-code"><code>## Zero Context Persistence
+- use context-persistence during task work
 - update context.md before chat response
 - log goal, decisions, blockers, touched files, verification, next step
 - compact when context is too large
-- extract reusable knowledge into daily learning and memory
+- extract reusable knowledge into daily note
+
+## Zero-Memory Workflow
+- use memory-curator when daily notes contain reusable knowledge
+- create new memory nodes or correct existing memory nodes from daily notes
+- maintain memory graph recall paths
+- use the memory graph before ad hoc memory search
 </code></pre>
                 <p>
-                  但对 Claude 来说，
+                  对于 Codex / Cursor 这一类 Agent 来说，
+                  <code>AGENTS.md</code>
+                  本身就可以承担这个角色: 把上面两条 force rule 写进
+                  <code>AGENTS.md</code>，让 Agent
+                  每次进入 workspace 时都把它们作为工作约束。对于 Claude 来说，
                   <code>CLAUDE.md</code>
                   通常只在对话开始时加载，长任务里 Agent 可能会逐渐忘掉这些约束。所以一个实用做法是使用
                   hook，在任务开始和状态变化时，重新注入相关规则。比如:
-                  <code>UserPromptSubmit</code> 时加载 `Zero Context Persistence`
-                  和 `Zero-Memory Workflow`，而在
+                  <code>UserPromptSubmit</code> 时加载
+                  <code>Zero Context Persistence</code> 和
+                  <code>Zero-Memory Workflow</code>，而在
                   <code>PostToolUse + TaskUpdate</code>
                   之后再次加载持久化规则。
                 </p>
@@ -278,8 +300,8 @@
     "UserPromptSubmit": [
       {
         "hooks": [
-          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../AGENTS.md \"Zero Context Persistence\"" },
-          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../AGENTS.md \"Zero-Memory Workflow\"" }
+          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero Context Persistence\"" },
+          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero-Memory Workflow\"" }
         ]
       }
     ],
@@ -287,7 +309,7 @@
       {
         "matcher": "TaskUpdate",
         "hooks": [
-          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../AGENTS.md \"Zero Context Persistence\"" }
+          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero Context Persistence\"" }
         ]
       }
     ]
@@ -752,31 +774,57 @@ related_files:
 
                 <h4>How does the Agent know what to persist into context in real time?</h4>
                 <p>
-                  The key is not to hope the Agent will spontaneously realize
-                  what should be persisted. The better approach is to load
-                  explicit force rules into the Agent. For Codex / Cursor style
-                  Agents, <code>AGENTS.md</code> itself can play that role. It
-                  defines the persistence boundary: update
-                  <code>context.md</code> before replying, keep only important
-                  task state, compact when the file gets too large, and promote
-                  reusable knowledge into <code>daily note</code> and memory. In
-                  that setup, persistence is not an optional afterthought. It is
-                  part of the workflow contract.
+                  First, split the capability into two skills:
+                  <code>context-persistence</code> and
+                  <code>memory-curator</code>. The first continuously maintains
+                  <code>context.md</code> during task execution, recording the
+                  goal, key decisions, blockers, touched files, verification
+                  state, and next step as restartable task state. When reusable
+                  knowledge appears, it distills that knowledge into an
+                  append-only <code>daily note</code>. The second combines those
+                  <code>daily note</code> entries with the memory graph: it
+                  creates new memory nodes, corrects existing memory nodes,
+                  maintains the graph's recall mechanism, and teaches the Agent
+                  how to reason over and retrieve memory through the graph.
+                </p>
+                <p>
+                  Skills alone are still not enough. During a long task, the
+                  Agent may forget when it is supposed to invoke them, so it is
+                  useful to add two force rules and automatically load them into
+                  the Agent's session context. These rules define the persistence
+                  boundary: update <code>context.md</code> before replying to the
+                  user, record only the information that really affects task
+                  continuation, compact context when it crosses the size
+                  threshold, and continue extracting reusable knowledge into
+                  <code>daily note</code> and memory. In that setup, persistence
+                  is not an optional afterthought. It is part of the workflow
+                  contract.
                 </p>
                 <pre class="note-code"><code>## Zero Context Persistence
+- use context-persistence during task work
 - update context.md before chat response
 - log goal, decisions, blockers, touched files, verification, next step
 - compact when context is too large
-- extract reusable knowledge into daily learning and memory
+- extract reusable knowledge into daily note
+
+## Zero-Memory Workflow
+- use memory-curator when daily notes contain reusable knowledge
+- create new memory nodes or correct existing memory nodes from daily notes
+- maintain memory graph recall paths
+- use the memory graph before ad hoc memory search
 </code></pre>
                 <p>
-                  For Claude,
+                  For Codex / Cursor style Agents, <code>AGENTS.md</code>
+                  itself can play this role: put the two force rules above into
+                  <code>AGENTS.md</code>, so the Agent treats them as workspace
+                  constraints whenever it enters the project. For Claude,
                   <code>CLAUDE.md</code> is usually loaded only when the
                   conversation begins, and during a long task the Agent can
                   gradually drift away from those constraints. A practical fix is
                   to use hooks to reinject the relevant rules at task start and
-                  state-change moments. For example, load `Zero Context
-                  Persistence` and `Zero-Memory Workflow` at
+                  state-change moments. For example, load
+                  <code>Zero Context Persistence</code> and
+                  <code>Zero-Memory Workflow</code> at
                   <code>UserPromptSubmit</code>, then reload the persistence
                   rules after <code>PostToolUse + TaskUpdate</code>.
                 </p>
@@ -785,8 +833,8 @@ related_files:
     "UserPromptSubmit": [
       {
         "hooks": [
-          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../AGENTS.md \"Zero Context Persistence\"" },
-          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../AGENTS.md \"Zero-Memory Workflow\"" }
+          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero Context Persistence\"" },
+          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero-Memory Workflow\"" }
         ]
       }
     ],
@@ -794,7 +842,7 @@ related_files:
       {
         "matcher": "TaskUpdate",
         "hooks": [
-          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../AGENTS.md \"Zero Context Persistence\"" }
+          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero Context Persistence\"" }
         ]
       }
     ]
