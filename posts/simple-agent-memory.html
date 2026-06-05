@@ -64,10 +64,28 @@
           </div>
 
           <article class="note-card">
-            <div class="note-meta" aria-label="Entry metadata">
+            <div class="note-meta" aria-label="Entry metadata and section directory">
               <span class="note-tag">Entry 002</span>
               <span class="note-tag">Memory</span>
               <span class="note-tag">Workflow</span>
+              <nav class="note-toc" data-lang-panel="zh" lang="zh-Hans" hidden aria-label="章节目录">
+                <p class="note-toc-title">章节目录</p>
+                <ol>
+                  <li><a href="#zh-background"><span>01</span>背景</a></li>
+                  <li><a href="#zh-principles"><span>02</span>原理</a></li>
+                  <li><a href="#zh-implementation"><span>03</span>实现</a></li>
+                  <li><a href="#zh-extensions"><span>04</span>扩展</a></li>
+                </ol>
+              </nav>
+              <nav class="note-toc is-active" data-lang-panel="en" lang="en" aria-label="Section directory">
+                <p class="note-toc-title">Contents</p>
+                <ol>
+                  <li><a href="#en-background"><span>01</span>Background</a></li>
+                  <li><a href="#en-principles"><span>02</span>Principles</a></li>
+                  <li><a href="#en-implementation"><span>03</span>Implementation</a></li>
+                  <li><a href="#en-extensions"><span>04</span>Extensions</a></li>
+                </ol>
+              </nav>
             </div>
 
             <div class="note-body">
@@ -101,7 +119,7 @@
                   <strong>项目地址</strong>
                   <a class="project-link" href="https://github.com/zero-chaoslab/zero-agent-memory">zero-chaoslab/zero-agent-memory</a>
                 </p>
-                <h4>背景</h4>
+                <h4 class="note-section-heading" id="zh-background">背景</h4>
                 <p>
                   在早期阶段使用 Agent 处理复杂任务的时候，主要也是使用 plan
                   mode，进一步也会用类似 OpenSpec 这样的 Task Framework
@@ -115,7 +133,9 @@
                   上使用，并方便观测、调试、修改的 context + memory 机制的想法。
                 </p>
 
-                <h4>从一个 context.md 开始</h4>
+                <h4 class="note-section-heading" id="zh-principles">原理</h4>
+
+                <h5 id="zh-start-context">从一个 context.md 开始</h5>
                 <p>
                   最开始的想法其实很简单: 做一个
                   <code>context.md</code>，让 Agent
@@ -128,7 +148,7 @@
                   机制，而不是严格意义上的长期记忆。
                 </p>
 
-                <h4>context 会越写越大</h4>
+                <h5 id="zh-context-growing">context 会越写越大</h5>
                 <p>
                   但随着任务一个接一个发生，<code>context.md</code>
                   会越来越大。它会同时包含目标、过程、试错、命令、临时判断，以及最后真正有价值的结论。等它大到一定程度时，Agent
@@ -139,7 +159,7 @@
                   压缩成总结，只保留当前还重要的结论，把细节先折叠起来。这解决了注意力问题，却又带来另一个问题: 压缩之后，某些原始线索可能会丢。很多时候，真正关键的不是最后一句总结，而是当时为什么这样判断、排除了什么、哪个失败路径其实以后还会再遇到。
                 </p>
 
-                <h4>压缩版和原始版都要保留</h4>
+                <h5 id="zh-keep-raw-context">压缩版和原始版都要保留</h5>
                 <p>
                   于是一个更稳妥的方法出现了: 不要让 compaction
                   覆盖原始内容，而是保留原始 context，再生成压缩后的
@@ -159,7 +179,7 @@
                   <figcaption>A context tree keeps summary and entry points at the top, with raw details nested below for selective lookup.</figcaption>
                 </figure>
 
-                <h4>但树形 context 还不等于 memory</h4>
+                <h5 id="zh-context-tree-not-memory">但树形 context 还不等于 memory</h5>
                 <p>
                   但问题还没有结束。即使 context
                   已经有了树状结构，它本质上仍然主要服务于“这个任务怎么继续做下去”。而当前这个任务的
@@ -179,7 +199,7 @@
                   man 手册或者 Google 一下，把它“回忆”起来。<strong>也就是说，我记住的往往不是命令的使用细节，而是如何找到这些细节的抽象线索、关键字和访问路径。</strong>
                 </p>
 
-                <h4>所以我们真正需要的，可能是一层 Abstract Graph</h4>
+                <h5 id="zh-abstract-graph">所以我们真正需要的，可能是一层 Abstract Graph</h5>
                 <p>
                   真正的问题不只是把内容分层保存，而是不同 context
                   之间往往会出现公共的内容。有些内容值得被单独提炼出来，有些内容彼此之间本来就存在引用关系。换句话说，我们需要的可能不是更多平铺的文档，而是一层图结构的知识图谱。
@@ -200,7 +220,7 @@
                     自己检索的关键字往往是错的，毕竟这些知识并不在它的训练语料里面。</strong>
                 </p>
 
-                <h4>仅有 context + graph 还不够</h4>
+                <h5 id="zh-context-graph-not-enough">仅有 context + graph 还不够</h5>
                 <p>
                   如果只看到这里，我们似乎已经得到了两层架构:
                   <code>context</code> + <code>graph</code>。但还有一个实际问题:
@@ -225,7 +245,7 @@
                   <figcaption>The Agent reads and writes through Context and Daily Note, while graph recall passes through Daily Note before reaching Context.</figcaption>
                 </figure>
 
-                <h4>最后的重点不是存多少，而是怎么召回</h4>
+                <h5 id="zh-recall-focus">最后的重点不是存多少，而是怎么召回</h5>
                 <p>
                   所以回过头看，一个更贴近实际的结构其实是
                   <code>context</code> + <code>daily note</code> +
@@ -245,7 +265,9 @@
                   中实现这一机制。
                 </p>
 
-                <h4>Agent 怎么实时知道该把什么写进 context</h4>
+                <h4 class="note-section-heading" id="zh-implementation">实现</h4>
+
+                <h5 id="zh-persist-context-realtime">Agent 怎么实时知道该把什么写进 context</h5>
                 <p>
                   首先，我们需要把能力拆成两个 skill:
                   <code>context-persistence</code> 和
@@ -333,7 +355,7 @@
                   skill 对所有 Agent 都是通用的，使用时直接将项目链接中的 <code>skills</code> 下的 skill copy 到自己的 Agent skill 目录即可，但不同 Agent 配置 rule 的方式可能不同，这里只列举 Codex / Cursor / Claude 的配置例子，其他 Agent 可按照其对应的 rule 加载方式结合做等效的配置。
                 </p>
 
-                <h4>什么时候 compact，什么时候提取到 daily note</h4>
+                <h5 id="zh-compact-daily-note">什么时候 compact，什么时候提取到 daily note</h5>
                 <p>
                   context 的目标是帮助当前任务恢复，而不是无止境地囤积所有历史。所以当
                   context 已经开始妨碍注意力时，就该 compact 了。比较直接的阈值是:
@@ -350,7 +372,7 @@
                   适合进入 <code>daily note</code> 的内容，往往有几个特征: 它不是单纯为了恢复当前现场；它包含某种非显然的方法、修正、反模式、调试路径或用户纠正；它在未来别的任务里可能再次出现；并且它即使现在还不够稳定，也值得先被 append-only 地保存下来，而不是等完全抽象之后再记。
                 </p>
 
-                <h4>什么时候再提取到 memory</h4>
+                <h5 id="zh-daily-note-to-memory">什么时候再提取到 memory</h5>
                 <p>
                   这里可以先把两层的职责分清楚: <code>daily note</code>
                   更像一个 append-only 的学习收件箱，用来先保留还没有完全定型的观察和修正；memory
@@ -395,7 +417,7 @@
 - follow-up paths
 </code></pre>
 
-                <h4>MemoryGraph应该采用怎样的保存格式</h4>
+                <h5 id="zh-memorygraph-format">MemoryGraph应该采用怎样的保存格式</h5>
                 <p>
                   如果 graph 只是换一个目录继续堆笔记，那它还是不可召回。一个更实用的方式，是把每个 memory
                   做成带 frontmatter 的 package，并明确保存它的描述、边界、图关系和新鲜度信息。比如:
@@ -430,7 +452,7 @@ related_files:
                   才不会退化成一次性全量扫描。
                 </p>
 
-                <h4>RecallMemory的时候应该怎样做</h4>
+                <h5 id="zh-recallmemory-workflow">RecallMemory的时候应该怎样做</h5>
                 <p>
                   有了前面的基础，我们可以很自然地得出 Recall
                   的时候不必一上来全文扫描所有 memory
@@ -453,7 +475,9 @@ related_files:
                   负责“中间过程里哪些痕迹不该被抹掉”。整个 memory
                   系统就不再只是一个存储层，而更像一个能被不断提醒、不断提炼、不断召回的认知工作流。
                 </p>
-                <h4>用Memory来路由skill</h4>
+                <h4 class="note-section-heading" id="zh-extensions">扩展</h4>
+
+                <h5 id="zh-memory-routes-skill">用Memory来路由skill</h5>
                 <p>
                   这一部分的背景是: 我在 Agent 的 skill
                   目录里逐步添加了很多 skill 之后，遇到过因为 skill
@@ -502,7 +526,7 @@ related_files:
                   的选择结合 memory 体系变得可观测和可修正，也方便 skill
                   本身在使用过程中根据负反馈自动调整和优化。
                 </p>
-                <h4>Memory的可观测性的构建方式</h4>
+                <h5 id="zh-memory-observability">Memory的可观测性的构建方式</h5>
                 <p>
                   Memory可观测性可以分成两个维度: 一个是对人的可观测性，另一个是对 Agent
                   的可观测性。对人的可观测性就比较好理解，将 memory graph 以及 recall trace
@@ -575,7 +599,7 @@ related_files:
                   <strong>Project address</strong>
                   <a class="project-link" href="https://github.com/zero-chaoslab/zero-agent-memory">zero-chaoslab/zero-agent-memory</a>
                 </p>
-                <h4>Background</h4>
+                <h4 class="note-section-heading" id="en-background">Background</h4>
                 <p>
                   In the early stage of using Agents for complex tasks, I mainly
                   used plan mode. Going one step further, I would also use a
@@ -599,7 +623,9 @@ related_files:
                   is easier to observe, debug, and modify.
                 </p>
 
-                <h4>Start with one <code>context.md</code></h4>
+                <h4 class="note-section-heading" id="en-principles">Principles</h4>
+
+                <h5 id="en-start-context">Start with one <code>context.md</code></h5>
                 <p>
                   If we go back to the beginning, the simplest idea is to create
                   a single <code>context.md</code> and let the Agent keep recording
@@ -614,7 +640,7 @@ related_files:
                   mainly a continuation mechanism for the current task.
                 </p>
 
-                <h4>The context keeps growing</h4>
+                <h5 id="en-context-growing">The context keeps growing</h5>
                 <p>
                   But task after task, the <code>context.md</code> becomes larger and
                   larger. It contains goals, trials, commands, temporary
@@ -632,7 +658,7 @@ related_files:
                   conclusion.
                 </p>
 
-                <h4>Keep both the compacted view and the raw source</h4>
+                <h5 id="en-keep-raw-context">Keep both the compacted view and the raw source</h5>
                 <p>
                   A better approach is not to let compaction overwrite the raw
                   context. Instead, we keep the original context content, then
@@ -655,7 +681,7 @@ related_files:
                   <figcaption>A context tree keeps summary and entry points at the top, with raw details nested below for selective lookup.</figcaption>
                 </figure>
 
-                <h4>But a context tree is still not the same as memory</h4>
+                <h5 id="en-context-tree-not-memory">But a context tree is still not the same as memory</h5>
                 <p>
                   But the problem is not finished there. Even with a tree
                   structure, the context still mainly serves one purpose: helping
@@ -689,7 +715,7 @@ related_files:
                   it again.</strong>
                 </p>
 
-                <h4>What we probably need is an Abstract Graph</h4>
+                <h5 id="en-abstract-graph">What we probably need is an Abstract Graph</h5>
                 <p>
                   The real issue is not only how to store content in layers.
                   Different contexts often contain shared material. Some pieces
@@ -720,7 +746,7 @@ related_files:
                     knowledge is not in its training data.</strong>
                 </p>
 
-                <h4>Context + graph alone is still not enough</h4>
+                <h5 id="en-context-graph-not-enough">Context + graph alone is still not enough</h5>
                 <p>
                   If we stop there, it looks like we already have a two-layer
                   architecture: <code>context</code> + <code>graph</code>. But
@@ -756,7 +782,7 @@ related_files:
                   <figcaption>The Agent reads and writes through Context and Daily Note, while graph recall passes through Daily Note before reaching Context.</figcaption>
                 </figure>
 
-                <h4>The real point is not how much we store, but how we recall</h4>
+                <h5 id="en-recall-focus">The real point is not how much we store, but how we recall</h5>
                 <p>
                   So a more realistic structure becomes <code>context</code> +
                   <code>daily note</code> + <code>abstract graph</code>.
@@ -779,7 +805,9 @@ related_files:
                   this mechanism inside coding Agents.
                 </p>
 
-                <h4>How does the Agent know what to persist into context in real time?</h4>
+                <h4 class="note-section-heading" id="en-implementation">Implementation</h4>
+
+                <h5 id="en-persist-context-realtime">How does the Agent know what to persist into context in real time?</h5>
                 <p>
                   First, split the capability into two skills:
                   <code>context-persistence</code> and
@@ -888,7 +916,7 @@ related_files:
                   rule-loading mechanism.
                 </p>
 
-                <h4>When should context be compacted, and when should it be extracted into daily notes?</h4>
+                <h5 id="en-compact-daily-note">When should context be compacted, and when should it be extracted into daily notes?</h5>
                 <p>
                   Context exists to help the current task recover, not to become
                   an infinitely growing archive. So once it starts getting in the
@@ -915,7 +943,7 @@ related_files:
                   are not yet stable enough to become a durable memory node.
                 </p>
 
-                <h4>When should daily notes be promoted into memory?</h4>
+                <h5 id="en-daily-note-to-memory">When should daily notes be promoted into memory?</h5>
                 <p>
                   First, separate the two layers. A <code>daily note</code> is
                   more like an append-only learning inbox that preserves
@@ -965,7 +993,7 @@ related_files:
 - follow-up paths
 </code></pre>
 
-                <h4>What format should MemoryGraph use?</h4>
+                <h5 id="en-memorygraph-format">What format should MemoryGraph use?</h5>
                 <p>
                   If the graph is only another directory full of notes, it still
                   will not be recallable. A more useful design is to package
@@ -1005,7 +1033,7 @@ related_files:
                   back into a flat scan of everything.
                 </p>
 
-                <h4>How should RecallMemory work?</h4>
+                <h5 id="en-recallmemory-workflow">How should RecallMemory work?</h5>
                 <p>
                   With the previous foundation in place, we can naturally
                   conclude that Recall does not need to full-scan every memory
@@ -1033,7 +1061,9 @@ related_files:
                   reminded, repeatedly curated, repeatedly recallable cognitive
                   workflow.
                 </p>
-                <h4>Use Memory to Route Skills</h4>
+                <h4 class="note-section-heading" id="en-extensions">Extensions</h4>
+
+                <h5 id="en-memory-routes-skill">Use Memory to Route Skills</h5>
                 <p>
                   The background for this part is practical: after I gradually
                   added many skills to the Agent's skill directory, I ran into
@@ -1090,7 +1120,7 @@ related_files:
                   the skill itself adjust and improve from negative feedback
                   gathered during use.
                 </p>
-                <h4>How to Build Memory Observability</h4>
+                <h5 id="en-memory-observability">How to Build Memory Observability</h5>
                 <p>
                   Memory observability has two dimensions: observability for
                   people and observability for the Agent. Human-facing

@@ -316,8 +316,11 @@ h3 {
 
 .note-meta {
   display: grid;
+  align-self: start;
   align-content: start;
   gap: 10px;
+  position: sticky;
+  top: 104px;
 }
 
 .note-tag {
@@ -340,6 +343,61 @@ h3 {
   margin: 12px 0 0;
   font-size: 0.96rem;
   line-height: 1.6;
+}
+
+.note-toc {
+  display: grid;
+  gap: 12px;
+  margin-top: 26px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(12, 111, 114, 0.14);
+}
+
+.note-toc-title {
+  margin: 0;
+  color: var(--teal);
+  font-size: 0.78rem;
+  font-weight: 820;
+  line-height: 1.2;
+}
+
+.note-toc ol {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.note-toc li {
+  margin: 0;
+}
+
+.note-toc a {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 8px;
+  align-items: baseline;
+  color: #4f6562;
+  font-size: 0.86rem;
+  font-weight: 680;
+  line-height: 1.35;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.note-toc a:hover,
+.note-toc a:focus-visible {
+  color: var(--ink);
+  outline: none;
+  transform: translateX(2px);
+}
+
+.note-toc a span {
+  color: rgba(12, 111, 114, 0.72);
+  font-variant-numeric: tabular-nums;
+  font-weight: 780;
 }
 
 .note-body {
@@ -367,10 +425,25 @@ h3 {
 }
 
 .note-copy h4 {
-  margin: 1.8em 0 0.6em;
+  margin: 2.25em 0 0.85em;
+  padding-top: 0.85em;
+  border-top: 1px solid rgba(12, 111, 114, 0.13);
   color: var(--ink);
-  font-size: 1.32rem;
+  font-size: 1.5rem;
   line-height: 1.24;
+  scroll-margin-top: 118px;
+}
+
+.note-copy h4:first-of-type {
+  margin-top: 1.6em;
+}
+
+.note-copy h5 {
+  margin: 1.6em 0 0.55em;
+  color: var(--ink);
+  font-size: 1.14rem;
+  line-height: 1.32;
+  scroll-margin-top: 118px;
 }
 
 .note-copy p {
@@ -589,6 +662,19 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .note-meta {
+    position: static;
+  }
+
+  .note-toc {
+    margin-top: 16px;
+  }
+
+  .note-toc ol {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    column-gap: 18px;
+  }
+
   .note-summary {
     max-width: none;
   }
@@ -684,6 +770,10 @@ h3 {
   .note-card {
     gap: 22px;
     padding: 22px;
+  }
+
+  .note-toc ol {
+    grid-template-columns: 1fr;
   }
 
   .note-link-copy p {
