@@ -108,6 +108,10 @@
                   <li>通过 memory 来路由应该使用哪个 skill，并支持在自我进化过程中将稳定的 workflow 自动转化为新的 skill，或修正已有的 skill。</li>
                   <li>支持 memory 本地化存储，并提供可视化能力，方便理解、审计和维护整个 memory 结构。</li>
                 </ul>
+                <p class="project-link-line">
+                  <strong>项目地址</strong>
+                  <a class="project-link" href="https://github.com/zero-chaoslab/zero-agent-memory">zero-chaoslab/zero-agent-memory</a>
+                </p>
                 <figure class="note-figure observability-figure">
                   <img
                     src="../assets/memory-observability-example.png"
@@ -115,10 +119,6 @@
                   />
                   <figcaption>Memory graph and recall trace can make memory routing visible to people.</figcaption>
                 </figure>
-                <p class="project-link-line">
-                  <strong>项目地址</strong>
-                  <a class="project-link" href="https://github.com/zero-chaoslab/zero-agent-memory">zero-chaoslab/zero-agent-memory</a>
-                </p>
                 <h4 class="note-section-heading" id="zh-background">背景</h4>
                 <p>
                   在早期阶段使用 Agent 处理复杂任务的时候，主要也是使用 plan
@@ -296,7 +296,7 @@
 - compact when context is too large
 - extract reusable knowledge into daily note
 
-## Zero-Memory Workflow
+## Zero Memory Workflow
 - use memory-curator when daily notes contain reusable knowledge
 - create new memory nodes or correct existing memory nodes from daily notes
 - maintain memory graph recall paths
@@ -313,7 +313,7 @@
                   hook，在任务开始和状态变化时，重新注入相关规则。比如:
                   <code>UserPromptSubmit</code> 时加载
                   <code>Zero Context Persistence</code> 和
-                  <code>Zero-Memory Workflow</code>，而在
+                  <code>Zero Memory Workflow</code>，而在
                   <code>PostToolUse + TaskUpdate</code>
                   之后再次加载持久化规则。
                 </p>
@@ -323,7 +323,7 @@
       {
         "hooks": [
           { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero Context Persistence\"" },
-          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero-Memory Workflow\"" }
+          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero Memory Workflow\"" }
         ]
       }
     ],
@@ -588,6 +588,10 @@ related_files:
                   <li>Use memory to route which skill should be used, and during self-evolution turn stable workflows into new skills or repair existing skills.</li>
                   <li>Store memory locally and provide visualization so the overall memory structure is easier to understand, audit, and maintain.</li>
                 </ul>
+                <p class="project-link-line">
+                  <strong>Project address</strong>
+                  <a class="project-link" href="https://github.com/zero-chaoslab/zero-agent-memory">zero-chaoslab/zero-agent-memory</a>
+                </p>
                 <figure class="note-figure observability-figure">
                   <img
                     src="../assets/memory-observability-example.png"
@@ -595,10 +599,6 @@ related_files:
                   />
                   <figcaption>Memory graph and recall trace can make memory routing visible to people.</figcaption>
                 </figure>
-                <p class="project-link-line">
-                  <strong>Project address</strong>
-                  <a class="project-link" href="https://github.com/zero-chaoslab/zero-agent-memory">zero-chaoslab/zero-agent-memory</a>
-                </p>
                 <h4 class="note-section-heading" id="en-background">Background</h4>
                 <p>
                   In the early stage of using Agents for complex tasks, I mainly
@@ -842,7 +842,7 @@ related_files:
 - compact when context is too large
 - extract reusable knowledge into daily note
 
-## Zero-Memory Workflow
+## Zero Memory Workflow
 - use memory-curator when daily notes contain reusable knowledge
 - create new memory nodes or correct existing memory nodes from daily notes
 - maintain memory graph recall paths
@@ -859,7 +859,7 @@ related_files:
                   to use hooks to reinject the relevant rules at task start and
                   state-change moments. For example, load
                   <code>Zero Context Persistence</code> and
-                  <code>Zero-Memory Workflow</code> at
+                  <code>Zero Memory Workflow</code> at
                   <code>UserPromptSubmit</code>, then reload the persistence
                   rules after <code>PostToolUse + TaskUpdate</code>.
                 </p>
@@ -869,7 +869,7 @@ related_files:
       {
         "hooks": [
           { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero Context Persistence\"" },
-          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero-Memory Workflow\"" }
+          { "type": "command", "command": "bash .../print-agents-section.sh --agents-file .../CLAUDE.md \"Zero Memory Workflow\"" }
         ]
       }
     ],
