@@ -65,7 +65,7 @@
   <text x="590" y="271" class="body">restart-safe task state</text>
   <rect x="836" y="209" width="122" height="32" rx="7" class="mini-teal"/>
   <text x="855" y="231" class="tiny">context.md</text>
-  <path d="M897 241V258M897 258H807M897 258H989M807 258V279M897 258V279M989 258V279" class="teal-line thin-line"/>
+  <path d="M897 241V258M807 258H1052M807 258V279M931 258V279M1052 258V279" class="teal-line thin-line"/>
   <rect x="748" y="279" width="118" height="30" rx="7" class="mini-teal"/>
   <rect x="877" y="279" width="108" height="30" rx="7" class="mini-teal"/>
   <rect x="996" y="279" width="112" height="30" rx="7" class="mini-teal"/>
