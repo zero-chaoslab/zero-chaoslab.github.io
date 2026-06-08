@@ -1,0 +1,108 @@
+<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Meta-skills maintain memory routes</title>
+  <desc id="desc">A diagram showing the Agent using context-persistence and memory-curator as meta-skills to maintain the Memory Graph, then using that graph to route to other skills, load selected skills back into the Agent, and feed execution results back into the graph.</desc>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#A8BFD9"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#E1B65D"/>
+    </marker>
+    <marker id="arrow-teal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#7FB8B0"/>
+    </marker>
+    <marker id="arrow-violet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#AAA9D0"/>
+    </marker>
+    <style>
+      .title { fill: #142523; font-family: Inter, Arial, sans-serif; font-size: 34px; font-weight: 800; letter-spacing: 0; }
+      .label { fill: #182c2a; font-family: Inter, Arial, sans-serif; font-size: 28px; font-weight: 800; letter-spacing: 0; }
+      .body { fill: #526d68; font-family: Inter, Arial, sans-serif; font-size: 19px; font-weight: 500; letter-spacing: 0; }
+      .small { fill: #5d7470; font-family: Inter, Arial, sans-serif; font-size: 15px; font-weight: 650; letter-spacing: 0; }
+      .tiny { fill: #637a75; font-family: Inter, Arial, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0; }
+      .outer { fill: #fbfcfa; stroke: #d7e8e5; stroke-width: 2; }
+      .panel { fill: #ffffff; stroke: #d7e8e5; stroke-width: 2; }
+      .agent { fill: #f7faff; stroke: #a8bfd9; stroke-width: 3; }
+      .meta { fill: #eef7f5; stroke: #7fb8b0; stroke-width: 3; }
+      .graph { fill: #fff8ea; stroke: #e1b65d; stroke-width: 3; }
+      .skill { fill: #f8fbfa; stroke: #d7e8e5; stroke-width: 3; }
+      .mini { fill: #ffffff; stroke: #d7e8e5; stroke-width: 1.8; }
+      .mini-amber { fill: #fffaf0; stroke: #e7c778; stroke-width: 1.8; }
+      .mini-teal { fill: #f7fbfa; stroke: #9bc9c4; stroke-width: 1.8; }
+      .edge-label-bg { fill: #fbfcfa; stroke: none; opacity: 0.96; }
+      .blue-line { stroke: #a8bfd9; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .amber-line { stroke: #e1b65d; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .teal-line { stroke: #7fb8b0; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .violet-line { stroke: #aaa9d0; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+      .dash-line { stroke-dasharray: 12 12; }
+    </style>
+  </defs>
+
+  <rect x="1" y="1" width="1198" height="718" rx="30" class="outer"/>
+  <rect x="54" y="50" width="1092" height="620" rx="26" class="panel"/>
+  <text x="92" y="114" class="title">Meta-Skills Maintain Memory Routes</text>
+
+  <rect x="92" y="296" width="222" height="124" rx="22" class="agent"/>
+  <text x="126" y="350" class="label">Agent</text>
+  <text x="126" y="385" class="body">current task cue</text>
+
+  <rect x="390" y="184" width="300" height="218" rx="24" class="meta"/>
+  <text x="425" y="238" class="label" fill="#106363">Meta Skills</text>
+  <text x="425" y="272" class="body">operate memory layer</text>
+  <rect x="425" y="298" width="226" height="38" rx="9" class="mini-teal"/>
+  <text x="447" y="322" class="small">context-persistence</text>
+  <rect x="425" y="350" width="226" height="38" rx="9" class="mini-teal"/>
+  <text x="466" y="374" class="small">memory-curator</text>
+
+  <rect x="760" y="150" width="330" height="270" rx="24" class="graph"/>
+  <text x="795" y="204" class="label" fill="#6a4d14">Memory Graph</text>
+  <text x="795" y="238" class="body" fill="#735d2c">descriptions, cues, routes</text>
+  <circle cx="858" cy="300" r="17" fill="#ffffff" stroke="#e1b65d" stroke-width="2.5"/>
+  <circle cx="926" cy="268" r="17" fill="#ffffff" stroke="#e1b65d" stroke-width="2.5"/>
+  <circle cx="1001" cy="305" r="17" fill="#ffffff" stroke="#e1b65d" stroke-width="2.5"/>
+  <circle cx="903" cy="358" r="17" fill="#ffffff" stroke="#e1b65d" stroke-width="2.5"/>
+  <circle cx="974" cy="360" r="17" fill="#ffffff" stroke="#e1b65d" stroke-width="2.5"/>
+  <path d="M874 293L910 276M942 276L985 297M869 314L891 344M920 358H957M938 281L966 345M988 349L997 322" stroke="#e1b65d" stroke-width="2.4" stroke-linecap="round"/>
+  <rect x="792" y="384" width="88" height="30" rx="8" class="mini-amber"/>
+  <text x="810" y="404" class="tiny">skill route</text>
+  <rect x="900" y="384" width="92" height="30" rx="8" class="mini-amber"/>
+  <text x="918" y="404" class="tiny">repair cue</text>
+  <rect x="1010" y="384" width="76" height="30" rx="8" class="mini-amber"/>
+  <text x="1020" y="404" class="tiny">extract cue</text>
+
+  <rect x="760" y="500" width="330" height="124" rx="22" class="skill"/>
+  <text x="795" y="546" class="label">Skill Place</text>
+  <text x="795" y="577" class="body">normal skill area</text>
+  <rect x="957" y="522" width="74" height="28" rx="7" class="mini"/>
+  <text x="973" y="541" class="tiny">browser</text>
+  <rect x="1040" y="522" width="38" height="28" rx="7" class="mini"/>
+  <text x="1051" y="541" class="tiny">git</text>
+  <rect x="957" y="562" width="74" height="28" rx="7" class="mini"/>
+  <text x="982" y="581" class="tiny">docs</text>
+  <rect x="1040" y="562" width="38" height="28" rx="7" class="mini"/>
+  <text x="1051" y="581" class="tiny">...</text>
+
+  <path d="M314 350C350 350 354 318 390 318" class="blue-line" marker-end="url(#arrow-blue)"/>
+  <rect x="214" y="226" width="132" height="29" rx="7" class="edge-label-bg"/>
+  <text x="225" y="248" class="small">invoke meta-skill</text>
+
+  <path d="M690 310C720 310 730 310 760 310" class="teal-line" marker-end="url(#arrow-teal)"/>
+  <rect x="640" y="270" width="118" height="29" rx="7" class="edge-label-bg"/>
+  <text x="651" y="292" class="small" fill="#3f6662">operate graph</text>
+
+  <path d="M314 382C448 474 610 452 760 372" class="amber-line dash-line" marker-end="url(#arrow-amber)"/>
+  <rect x="482" y="458" width="118" height="29" rx="7" class="edge-label-bg"/>
+  <text x="494" y="480" class="small" fill="#735d2c">recall task cue</text>
+
+  <path d="M925 420V500" class="amber-line" marker-end="url(#arrow-amber)"/>
+  <rect x="934" y="448" width="166" height="29" rx="7" class="edge-label-bg"/>
+  <text x="945" y="470" class="small" fill="#735d2c">find / correct / extract</text>
+
+  <path d="M880 500V420" class="violet-line dash-line" marker-end="url(#arrow-violet)"/>
+  <rect x="790" y="448" width="82" height="29" rx="7" class="edge-label-bg"/>
+  <text x="801" y="470" class="small" fill="#67659b">feedback</text>
+
+  <path d="M760 578C635 635 455 635 314 402" class="amber-line dash-line" marker-end="url(#arrow-amber)"/>
+  <rect x="462" y="635" width="126" height="29" rx="7" class="edge-label-bg"/>
+  <text x="474" y="657" class="small" fill="#735d2c">load selected skill</text>
+</svg>

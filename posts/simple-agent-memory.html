@@ -518,6 +518,13 @@ related_files:
                   负责回答“现在应该用哪种方法”，skill
                   负责回答“这套方法具体怎么执行”。
                 </p>
+                <figure class="note-figure skill-routing-figure">
+                  <img
+                    src="../assets/memory-skill-routing.svg"
+                    alt="Agent uses meta-skills to maintain Memory Graph routes, load selected skills, and feed execution results back to the graph"
+                  />
+                  <figcaption>Agent 先通过 context-persistence 和 memory-curator 这两个 meta skill 维护 Memory Graph；Memory Graph 再作为路由层，帮助 Agent 加载、修正或提炼其他 skill，并把执行反馈写回路由。</figcaption>
+                </figure>
                 <p>
                   如果在使用过程中发现通过 memory 并不能正确地找到某个 skill，也可以让 Agent
                   反思一下为什么没有找到。Agent
@@ -1111,6 +1118,13 @@ related_files:
                   method should I use now," while the skill answers "how should
                   that method actually be executed."
                 </p>
+                <figure class="note-figure skill-routing-figure">
+                  <img
+                    src="../assets/memory-skill-routing.svg"
+                    alt="Agent uses meta-skills to maintain Memory Graph routes, load selected skills, and feed execution results back to the graph"
+                  />
+                  <figcaption>The Agent uses context-persistence and memory-curator as meta-skills to maintain the Memory Graph; the graph then routes the Agent to load, correct, or extract other skills, and execution feedback repairs future routes.</figcaption>
+                </figure>
                 <p>
                   If memory fails to find the right skill during use, the Agent
                   can reflect on why the route was missed. It can then update
