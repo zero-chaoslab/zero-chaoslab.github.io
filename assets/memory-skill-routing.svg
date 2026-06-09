@@ -71,7 +71,7 @@
   <text x="1020" y="404" class="tiny">extract cue</text>
 
   <rect x="760" y="500" width="330" height="124" rx="22" class="skill"/>
-  <text x="795" y="546" class="label">Skill Place</text>
+  <text x="795" y="546" class="label">Skills</text>
   <text x="795" y="577" class="body">normal skill area</text>
   <rect x="957" y="522" width="74" height="28" rx="7" class="mini"/>
   <text x="973" y="541" class="tiny">browser</text>
