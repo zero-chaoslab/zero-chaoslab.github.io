@@ -12,3 +12,4 @@ reader-visible language selector so either version can be shown.
 The selected theme is **Luminous Lab**: a predominantly white visual system
 with deep charcoal typography, muted teal controls, warm amber accents, crisp
 borders, and a bright research-studio hero image.
+
