@@ -95,8 +95,8 @@
                   本文更侧重记录在使用 Codex / Claude
                   等 coding Agent 做研发时如何从自己对 context 和 long-term memory
                   跨 Agent 迁移的需求出发逐步在 skill
-                  的基础之上实现一套独立 Agent memory 的思考和理解。因此这里不会重点展开 memory
-                  benchmark 等测试，也没有业界方案调研或对比之类的，更多的是在实践过程中发现不好的地方就随时调整，使得自身的长期经验可以在使用 Agent
+                  的基础之上实现一套独立 Agent memory 的思考和理解。因此本文暂不会展开 memory
+                  benchmark 等测试以及业界方案调研或对比之类的，更多的是在实践过程中发现不好的地方就随时调整，使得自身的长期经验可以在使用 Agent
                   的过程中在 memory 的基础上被持续积累并达到自我进化的目的。
                 </p>
                 <p>
@@ -526,6 +526,13 @@ related_files:
                   <figcaption>Agent 先通过 context-persistence 和 memory-curator 这两个 meta skill 维护 Memory Graph；Memory Graph 再作为路由层，帮助 Agent 加载、修正或提炼其他 skill，并把执行反馈写回路由。</figcaption>
                 </figure>
                 <p>
+                  这种方式还有一个额外的好处: 当 skill 数量增长到上百个以后，如果这些
+                  skill 都放在 Agent 自身的 skill 目录里，每次对话开始时 Agent
+                  都可能先看到大量 skill description。这些描述虽然有用，但在与当前问题无关时，
+                  也会污染上下文并稀释 Agent 的注意力。而如果把普通 skill
+                  放在由 memory 路由的 skills 目录中，Agent
+                  不会在每轮会话里自动加载它们，而是先通过 memory
+                  判断当前问题是否需要 skill，以及应该加载哪一个 skill，
                   如果在使用过程中发现通过 memory 并不能正确地找到某个 skill，也可以让 Agent
                   反思一下为什么没有找到。Agent
                   会自动修正 memory 的描述，使得通过 memory recall
@@ -577,7 +584,7 @@ related_files:
                   development: starting from the need to make context and
                   long-term memory migrate across Agents, and gradually building
                   an independent Agent memory on top of skill capabilities. It
-                  does not focus on memory benchmarks, nor does it include
+                  does not expand into memory benchmarks for now, nor into
                   industry-solution research or comparison. It is more about
                   finding rough edges during practice, adjusting them as they
                   appear, and letting personal long-term experience keep
@@ -1126,7 +1133,18 @@ related_files:
                   <figcaption>The Agent uses context-persistence and memory-curator as meta-skills to maintain the Memory Graph; the graph then routes the Agent to load, correct, or extract other skills, and execution feedback repairs future routes.</figcaption>
                 </figure>
                 <p>
-                  If memory fails to find the right skill during use, the Agent
+                  This also brings one extra benefit. Once the number of skills
+                  grows into the hundreds, putting all of them inside the
+                  Agent's own skill directory means each new conversation may
+                  start by exposing the Agent to a large set of skill
+                  descriptions. Those descriptions are useful, but when they are
+                  unrelated to the current problem, they can pollute the context
+                  and dilute the Agent's attention. If ordinary skills live in a
+                  memory-routed skills directory instead, the Agent does not
+                  automatically load them on every turn. It first uses memory to
+                  decide whether the current problem needs a skill, and which
+                  skill should be loaded, and if memory fails to find the right
+                  skill during use, the Agent
                   can reflect on why the route was missed. It can then update
                   the memory description so future memory recall finds the
                   skill more precisely. This makes skill selection observable
